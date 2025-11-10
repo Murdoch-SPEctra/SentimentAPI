@@ -1,9 +1,10 @@
+from time import time
 import requests
 
 def test_batch(comments):
     """Test multiple comments at once (batch mode)."""
     response = requests.post(
-        "http://localhost:5000/getsentiment",
+        "http://10.51.33.33:5000/getsentiment",
         json=comments
     )
     result = response.json()
@@ -25,4 +26,8 @@ batch_comments = {
     "4": "Soniya has joined the team by week 3, but she worked on her parts without any complaints. She led the documentation team and assigned "
 }
 
+start_time = time()
 test_batch(batch_comments)
+end_time = time()
+
+print(f"Batch API request took {end_time - start_time} seconds.")
